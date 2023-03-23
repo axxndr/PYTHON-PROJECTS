@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>drzewo_binarne</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="drzewo-decyzyjne">Drzewo decyzyjne</h1>
+<h1 id="teoria">Teoria</h1>
+<p>Drzewo decyzyjne to graficzna reprezentacja decyzji podejmowanych w oparciu o zestaw reguł. Algorytm ID3 to jedna z metod budowy drzew decyzyjnych, która opiera się na wyborze atrybutów o największym znaczeniu w podejmowaniu decyzji. W tym algorytmie, entropia jest miarą nieokreśloności lub nieporządku danych, która jest wykorzystywana do obliczenia informacyjnej wartości każdego atrybutu. Im mniejsza entropia, tym większa informacyjna wartość atrybutu. W procesie tworzenia drzewa decyzyjnego, algorytm ID3 iteracyjnie wybiera atrybut o największej informacyjnej wartości i tworzy węzeł drzewa na podstawie tego atrybutu.</p>
+<h1 id="opis-programu">Opis programu</h1>
+<p>Program generujący drzewo decyzyjne dla problemu wyboru filmu został napisany w języku Python 3.10, w środowisku PyCharm Community Edition 2022.2.2. Drzewo zostało ostatecznie wygenerowane z pomocą zewnętrznego programu Graphviz. Dzięki programowi możliwe jest wygenerowanie drzewa dla dowolnych danych z pliku  xls.</p>
+<h1 id="wymagane-biblioteki">Wymagane biblioteki</h1>
+<pre><code>import pandas as pd 
+import math as math  
+from graphviz import Digraph  
+import os
+</code></pre>
+<p>Biblioteka <code>math</code> nie wymaga instalacji.<br>
+Aby zainstalować bibliotekę <code>pandas</code> w terminalu należy wpisać komendę:</p>
+<pre><code>pip install pandas
+</code></pre>
+<p>Dla komputerów o systemie macOS należy w terminalu wpisać komendę :</p>
+<pre><code>/bin/bash -c "$(curl-fsSLhttps://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+</code></pre>
+<p>Następnie w terminalu należy wpisać:</p>
+<pre><code>brew install grapviz
+</code></pre>
+<p>Dla komputerów o systemie Windows należy w terminalu wpisać komendę :</p>
+<pre><code>winget install graphviz
+</code></pre>
+<h1 id="przygotowanie-danych">Przygotowanie danych</h1>
+<p>Program pobiera dane z tabeli w Excelu, w której przesłanki oraz konkluzje uporządkowane są poziomo i przypisane są im wartości 0 lub 1. Ważne, aby plik z danymi miał rozszerzenie .xls</p>
+<p>W pliku znajduje się również kod, który może służyć do wczytania przez użytkownika dowolnego zestawu danych. Do sprawdzenia naszego zestawu został on zakomentowany.</p>
+<h1 id="najważniejsze-funkcje">Najważniejsze funkcje</h1>
+<ul>
+<li>
+<p>Entropy</p>
+<pre><code>  entropy(ni, N)
+</code></pre>
+<p>Funkcja obliczająca entropię.</p>
+</li>
+<li>
+<p>Unique</p>
+<pre><code>  unique(selected_premise, selected_index, binary_result, conclusion)
+</code></pre>
+</li>
+</ul>
+<p>Funkcja, która stosowana jest w momencie, gdy dla potwierdzenia lub zaprzeczenia danego warunku występuje jednoznaczna konkluzja.</p>
+<ul>
+<li>
+<p>Split</p>
+<pre><code>  split(data, selected_premise, selected_index, beginning_tree, binary_result):
+</code></pre>
+</li>
+</ul>
+<p>Funkcja, która na podstawie miar zysku informacyjnego zapisywanych do wektora, wybiera wartość maksymalną i dzieli tabelę na dwie na podstawie przesłanki, dla której wartość ta jest największa. Wyjątkiem jest przypadek, gdy wartości zysku informacyjnego dla każdej przesłanki są równe 0 – wtedy wybierana jest pierwsza wartość w tablicy, dla której wartości nie są identyczne (to znaczy nie występują same 0 ani same 1).</p>
+<h1 id="działanie-programu">Działanie programu</h1>
+<p>Po każdej iteracji program zwraca wynik, który pokazuje w jaki sposób podzielono tabelę lub, która przesłanka została wybrana jako jednoznaczna</p>
+<blockquote>
+<p>Written with <a href="https://stackedit.io/">StackEdit</a>.</p>
+</blockquote>
+</div>
+</body>
+
+</html>
